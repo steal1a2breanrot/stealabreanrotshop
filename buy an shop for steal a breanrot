@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Steal a Breanrot — Party & Events</title>
+  <meta name="description" content="Steal a Breanrot — Party events, join the game, weekly obby races, giveaways." />
+  <meta name="theme-color" content="#0f1724">
+
+  <!-- Minimal favicon (data URI) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%231c64f2'/%3E%3Ctext x='50' y='60' font-size='48' text-anchor='middle' fill='white' font-family='sans-serif'%3EB%3C/text%3E%3C/svg%3E">
+
+  <style>
+    :root{
+      --bg1: #071124;
+      --bg2: #07203a;
+      --accent: #20c997;
+      --accent2: #7c5cff;
+      --muted: #9aa6bf;
+      --card: linear-gradient(135deg, rgba(124,92,255,0.12), rgba(32,201,151,0.06));
+      --glass: rgba(255,255,255,0.03);
+      --glass-2: rgba(255,255,255,0.02);
+      --maxw: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,92,255,0.06), transparent),
+                  radial-gradient(900px 400px at 90% 90%, rgba(32,201,151,0.04), transparent),
+                  linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:32px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--maxw);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:start;
+    }
+
+    /* Left column - hero + sections */
+    .panel{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px;
+      padding:26px;
+      box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .hero{
+      display:flex;
+      gap:20px;
+      align-items:center;
+    }
+
+    .badge{
+      width:96px;
+      height:96px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:36px;
+      color:white;
+      background: linear-gradient(135deg,var(--accent2),var(--accent));
+      flex:0 0 96px;
+      box-shadow: 0 8px 30px rgba(32,201,151,0.12), inset 0 -6px 14px rgba(0,0,0,0.18);
+    }
+
+    .hero h1{
+      margin:0 0 8px 0;
+      font-size:24px;
+      letter-spacing:-0.2px;
+    }
+    .hero p{margin:0;color:var(--muted);font-size:14px}
+
+    .actions{
+      margin-top:18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      color: white;
+      font-weight:600;
+      font-size:14px;
+      border: none;
+      cursor:pointer;
+      transition:transform .12s ease, box-shadow .12s ease;
+      box-shadow: 0 6px 22px rgba(2,6,23,0.45);
+      background: linear-gradient(90deg,var(--accent2),var(--accent));
+    }
+    .btn:hover{transform:translateY(-4px)}
+    .btn.ghost{
+      background: transparent;
+      color:var(--accent);
+      border:1px solid rgba(124,92,255,0.12);
+      box-shadow:none;
+    }
+
+    /* Info cards */
+    .cards{
+      margin-top:18px;
+      display:grid;
+      gap:12px;
+      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+    }
+    .card{
+      padding:12px;
+      border-radius:12px;
+      background: var(--card);
+      border:1px solid rgba(255,255,255,0.03);
+      color:#eaf6f0;
+    }
+    .card h4{margin:0 0 6px 0;font-size:13px}
+    .card p{margin:0;color:var(--muted);font-size:13px}
+
+    /* Right column - sidebar */
+    .sidebar{
+      position:sticky;
+      top:36px;
+      height:fit-content;
+    }
+    .event{
+      padding:18px;
+      border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .event h3{margin:0 0 8px 0}
+    .countdown{
+      display:flex;
+      gap:8px;
+      margin-top:10px;
+    }
+    .time{
+      background:var(--glass);
+      padding:10px 12px;
+      border-radius:8px;
+      min-width:62px;
+      text-align:center;
+      font-weight:700;
+    }
+    .small{font-size:12px;color:var(--muted);font-weight:600}
+
+    .rsvp{
+      margin-top:16px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .input{
+      flex:1;
+      background:var(--glass-2);
+      border-radius:10px;
+      padding:10px;
+      border:1px solid rgba(255,255,255,0.02);
+      color:inherit;
+      outline:none;
+    }
+
+    .socials{
+      margin-top:16px;
+      display:flex;
+      gap:8px;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .socials a{color:var(--muted);text-decoration:none;font-size:13px}
+
+    footer {
+      margin-top:18px;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+    }
+
+    /* responsive */
+    @media (max-width:980px){
+      .container{grid-template-columns:1fr}
+      .sidebar{position:relative; top:unset}
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <!-- left/main -->
+    <div class="panel">
+      <div class="hero" aria-labelledby="site-title">
+        <div class="badge" aria-hidden="true">B</div>
+        <div>
+          <h1 id="site-title">Steal a Breanrot</h1>
+          <p id="tagline">Quirky party hub — obby races, giveaways, and weekly events. Follow on Roblox: <strong id="roblox-handle">@Bbbbbbbnnnnnnng</strong></p>
+
+          <div class="actions">
+            <!-- Replace hrefs below with your Roblox links -->
+            <a class="btn" id="follow-btn" href="#" target="_blank" rel="noopener noreferrer" aria-label="Follow on Roblox">
+              ⭐ Follow on Roblox
+            </a>
+            <button class="btn ghost" id="join-event" title="Join next event">Join next event</button>
+            <a class="btn ghost" id="discord" href="#" target="_blank" rel="noopener noreferrer">Discord (placeholder)</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards" aria-hidden="false">
+        <div class="card">
+          <h4>Next event</h4>
+          <p id="next-event">Neon Obby Race — Saturday, 6:00 PM UTC</p>
+        </div>
+        <div class="card">
+          <h4>Party perks</h4>
+          <p>Followers get early access, VIP spawn, and exclusive skins during events.</p>
+        </div>
+        <div class="card">
+          <h4>How to join</h4>
+          <p>Follow on Roblox, join the group, and be online at event time to receive invites.</p>
+        </div>
+      </div>
+
+      <section style="margin-top:18px">
+        <div class="panel" style="padding:18px; background:transparent; border:0">
+          <h3 style="margin-top:0">About this party</h3>
+          <p style="color:var(--muted);line-height:1.5">
+            Steal a Breanrot is a friendly Roblox community focused on fast obby challenges, goofy minigames, and small giveaways.
+            Everyone is welcome — whether you’re a pro speedrunner or just here for the vibes.
+          </p>
+
+          <h4 style="margin-top:14px">Upcoming highlights</h4>
+          <ul style="color:var(--muted);line-height:1.6">
+            <li>Weekly Neon Obby — Saturday 6pm UTC</li>
+            <li>Party nights with custom maps & prizes</li>
+            <li>Community collabs every month</li>
+          </ul>
+
+          <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn" id="open-guide">Event Guide</button>
+            <button class="btn ghost" id="share-link">Copy party link</button>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div>Made with ❤️ — Steal a Breanrot</div>
+        <div style="margin-top:6px">Pro tip: edit <code>index.html</code> to replace links and event times.</div>
+      </footer>
+    </div>
+
+    <!-- right/sidebar -->
+    <aside class="sidebar">
+      <div class="event panel" aria-labelledby="event-title">
+        <h3 id="event-title">Next Live Event</h3>
+        <p class="small">Neon Obby Race — don't miss it!</p>
+
+        <div class="countdown" aria-live="polite" style="margin-top:12px">
+          <div class="time" id="cd-days">--<div class="small">days</div></div>
+          <div class="time" id="cd-hours">--<div class="small">hrs</div></div>
+          <div class="time" id="cd-mins">--<div class="small">mins</div></div>
+          <div class="time" id="cd-secs">--<div class="small">secs</div></div>
+        </div>
+
+        <div class="rsvp">
+          <input class="input" id="player-name" placeholder="Your Roblox username" aria-label="Your Roblox username" />
+          <button class="btn" id="rsvp-btn">RSVP</button>
+        </div>
+
+        <div class="socials">
+          <a id="roblox-profile" href="#" target="_blank" rel="noopener noreferrer">Roblox profile</a>
+          <a id="roblox-group" href="#" target="_blank" rel="noopener noreferrer">Join group</a>
+        </div>
+      </div>
+
+      <div style="height:18px"></div>
+
+      <div class="panel" style="padding:14px">
+        <h4 style="margin:0 0 8px 0">Quick links</h4>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a class="btn" id="play-now" href="#" target="_blank" rel="noopener noreferrer">Play now</a>
+          <a class="btn ghost" id="watch-highlights" href="#" target="_blank" rel="noopener noreferrer">Watch highlights</a>
+          <a class="btn ghost" id="support" href="#" target="_blank" rel="noopener noreferrer">Support the server</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    // ====== CONFIG: edit these values to match your account ======
+    const CONFIG = {
+      robloxHandle: "@Bbbbbbbnnnnnnng", // displayed handle
+      robloxProfileUrl: "https://www.roblox.com/users/YOUR_USER_ID/profile", // replace YOUR_USER_ID
+      robloxGroupUrl: "https://www.roblox.com/groups/YOUR_GROUP_ID/STEAL-A-BREANROT", // replace YOUR_GROUP_ID
+      playNowUrl: "#", // link to your game's place URL
+      highlightsUrl: "#", // link to Youtube/TikTok highlights
+      supportUrl: "#", // link to donate / support (optional)
+      eventDateISO: (function(){
+        // default next event: next Saturday 18:00 UTC from now
+        const now = new Date();
+        const day = now.getUTCDay();
+        const daysUntilSat = (6 - day + 7) % 7 || 7;
+        const nextSat = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + daysUntilSat, 18, 0, 0));
+        return nextSat.toISOString();
+      })()
+    };
+
+    // Wire up UI with config
+    document.getElementById('roblox-handle').textContent = CONFIG.robloxHandle;
+    document.getElementById('roblox-profile').href = CONFIG.robloxProfileUrl;
+    document.getElementById('roblox-group').href = CONFIG.robloxGroupUrl;
+    document.getElementById('play-now').href = CONFIG.playNowUrl;
+    document.getElementById('watch-highlights').href = CONFIG.highlightsUrl;
+    document.getElementById('support').href = CONFIG.supportUrl;
+    document.getElementById('follow-btn').href = CONFIG.robloxProfileUrl;
+    document.getElementById('join-event').addEventListener('click', () => {
+      // scroll to RSVP
+      document.getElementById('player-name').focus();
+      flashElement(document.getElementById('player-name'));
+    });
+
+    // Copy party link
+    document.getElementById('share-link').addEventListener('click', async () => {
+      const link = location.href;
+      try {
+        await navigator.clipboard.writeText(link);
+        showToast('Party link copied to clipboard!');
+      } catch (e) {
+        prompt('Copy this link:', link);
+      }
+    });
+
+    // RSVP button (local demo; not saving)
+    document.getElementById('rsvp-btn').addEventListener('click', () => {
+      const name = document.getElementById('player-name').value.trim();
+      if(!name){ showToast('Enter your Roblox username to RSVP'); return; }
+      showToast(`RSVP received for ${name} — be online at event time!`);
+      document.getElementById('player-name').value = '';
+    });
+
+    // Countdown timer
+    const target = new Date(CONFIG.eventDateISO);
+    function updateCountdown(){
+      const now = new Date();
+      let diff = Math.max(0, target - now);
+      const days = Math.floor(diff / (24*60*60*1000));
+      diff -= days * 24*60*60*1000;
+      const hours = Math.floor(diff / (60*60*1000));
+      diff -= hours * 60*60*1000;
+      const mins = Math.floor(diff / (60*1000));
+      diff -= mins * 60*1000;
+      const secs = Math.floor(diff / 1000);
+
+      document.getElementById('cd-days').firstChild && (document.getElementById('cd-days').firstChild.textContent = days);
+      document.getElementById('cd-hours').firstChild && (document.getElementById('cd-hours').firstChild.textContent = hours);
+      document.getElementById('cd-mins').firstChild && (document.getElementById('cd-mins').firstChild.textContent = mins);
+      document.getElementById('cd-secs').firstChild && (document.getElementById('cd-secs').firstChild.textContent = secs);
+
+      // alternatively set innerText (works cross-browser)
+      document.getElementById('cd-days').childNodes[0].nodeValue = days;
+      document.getElementById('cd-hours').childNodes[0].nodeValue = hours;
+      document.getElementById('cd-mins').childNodes[0].nodeValue = mins;
+      document.getElementById('cd-secs').childNodes[0].nodeValue = secs;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // small UI helpers
+    function showToast(msg){
+      const t = document.createElement('div');
+      t.textContent = msg;
+      Object.assign(t.style, {
+        position:'fixed', right:'20px', bottom:'20px', padding:'10px 14px',
+        background:'linear-gradient(90deg,#333,#111)', color:'#fff', borderRadius:'10px',
+        boxShadow:'0 8px 30px rgba(0,0,0,0.6)', zIndex:9999, fontSize:'14px'
+      });
+      document.body.appendChild(t);
+      setTimeout(()=> t.style.opacity = '0.01', 1600);
+      setTimeout(()=> t.remove(), 2200);
+    }
+    function flashElement(el){
+      const orig = el.style.boxShadow;
+      el.style.boxShadow = '0 0 0 4px rgba(124,92,255,0.18)';
+      setTimeout(()=> el.style.boxShadow = orig, 800);
+    }
+
+    // Event guide modal (simple)
+    document.getElementById('open-guide').addEventListener('click', () => {
+      const content = [
+        "1) Follow the host on Roblox.",
+        "2) Join the group before event time.",
+        "3) Be online at the event — invites will be sent to followers first.",
+        "4) Winners receive VIP ranks or in-game currency.",
+        "",
+        "Tip: use the copy link button to invite friends!"
+      ].join('\\n');
+      alert(content);
+    });
+
+    // Quick accessibility: ensure countdown uses text nodes we can set
+    // (no action needed; done above)
+  </script>
+</body>
+</html>
